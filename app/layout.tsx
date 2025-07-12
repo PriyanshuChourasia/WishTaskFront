@@ -4,6 +4,7 @@ import "./globals.css";
 import QueryProvider from "./lib/TanstackQuery/QueryProvider";
 import {Toaster} from "react-hot-toast";
 import { inter } from "./ui/fonts";
+import StoreProvider from "./ui/redux/StoreProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${inter.className} ${geistMono.variable} antialiased`}
       >
-        <QueryProvider>
-          <Toaster position="top-right" />
-          {children}
-        </QueryProvider>
+        <StoreProvider>
+          <QueryProvider>
+            <Toaster position="top-right" />
+            {children}
+          </QueryProvider>
+        </StoreProvider>
       </body>
     </html>
   );
