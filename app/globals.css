@@ -37,6 +37,21 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 
+/* Font Size */
+@theme{
+  --text-base: 18px;
+  --text-md: 16px;
+}
+
+/* Colors */
+@theme{
+  --color-dark-bg: "#101214";
+  --color-dark-secondary: "#1d1f21";
+  --color-dark-tertiary: "#3b3d40";
+  --color-blue-primary: "#0275ff";
+  --color-stroke-dark: "#2d3135"
+}
+
 
 @theme inline {
   --color-background: var(--background);

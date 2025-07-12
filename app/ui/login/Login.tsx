@@ -17,7 +17,14 @@ export default function Login(){
                         Simplify your workflow and boost your productivity with WishAlpha App. Get started for free.
                     </span>
                 </div>
-                <LoginForm/>
+                <div className="">
+                    <LoginForm/>
+                    <div className="text-center mt-12">
+                        <p>
+                            Not a member? <span className="font-semibold cursor-pointer text-green-700">Register now</span>
+                        </p>
+                    </div>
+                </div>
             </div>
             <div>
 
