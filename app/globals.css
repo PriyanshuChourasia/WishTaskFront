@@ -45,7 +45,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 /* Colors */
 @theme{
-  --color-dark-bg: "#101214";
+  --color-dark-primary: "#101214";
   --color-dark-secondary: "#1d1f21";
   --color-dark-tertiary: "#3b3d40";
   --color-blue-primary: "#0275ff";
