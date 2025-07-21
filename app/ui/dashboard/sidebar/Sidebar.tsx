@@ -2,6 +2,8 @@
 import { X } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { setIsSidebarCollapsed } from "../../redux/global";
+import SidebarLink from "./SidebarLinks";
+import {LayoutDashboard, ClipboardCheck, UsersRound} from "lucide-react";
 
 
 
@@ -17,11 +19,11 @@ export default function Sidebar(){
 
     return(
         <aside className={sidebarClassName}>
-            <div className="flex h-[100%] w-full flex-col justify-start ">
+            <div className="flex h-[100%] w-full  flex-col justify-start ">
                 {/* Top Logo */}
                 <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
                     <div className="text-xl font-bold text-gray-800 dark:text-white">
-                        Wish
+                        <span className="text-sm">WishAlpha</span>
                     </div>
                     {
                         isSidebarCollapsed ? null : (
@@ -31,10 +33,16 @@ export default function Sidebar(){
                         )
                     }
                 </div>
-
+                <div className="mb-5 border-[1px] dark:border-gray-400" />
                 {/* Teams Information */}
 
                 {/* Sidebar Links */}
+                <div className="px-2">
+                    <SidebarLink href="/dashboard" name="Dashboard" icon={LayoutDashboard} />
+                    <SidebarLink href="/dashboard/tasks" name="Task" icon={ClipboardCheck} />
+                    <SidebarLink href="/dashboard/users" name="Users" icon={UsersRound} />
+                </div>
+
             </div>
         </aside>
     )

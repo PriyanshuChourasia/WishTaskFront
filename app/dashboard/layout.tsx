@@ -24,10 +24,10 @@ export default function Layout({children}:{children:React.ReactNode}){
         <div className='flex min-h-screen w-full bg-gray-50 text-gray-900'>
             {/* Sidebar */}
             <Sidebar/>
-            <main className={`flex w-full flex-col bg-gray-50 dark:bg-gray-700 dark:text-white ${isSidebarCollapsed ? "" : "md:pl-64 2xl:pl-64 lg:pl-64"}`}>
+            <main className={`flex w-full flex-col bg-gray-50 dark:bg-gray-600 dark:text-white ${isSidebarCollapsed ? "" : "md:pl-64 2xl:pl-64 lg:pl-64"}`}>
                 {/* Navbar */}
                 <Navbar/>
-                <div className='pl-4 pr-6 py-3'>{children}</div>
+                <div className='pl-0 pr-0 py-0'>{children}</div>
             </main>
         </div>
     )
