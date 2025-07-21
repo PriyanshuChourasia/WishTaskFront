@@ -1,14 +1,17 @@
 "use client";
-import { X } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, Grid3x2, House, X } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { setIsSidebarCollapsed } from "../../redux/global";
 import SidebarLink from "./SidebarLinks";
 import {LayoutDashboard, ClipboardCheck, UsersRound} from "lucide-react";
+import { useState } from "react";
 
 
 
 
 export default function Sidebar(){
+
+    const [showWorkspaces,setShowWorkspaces] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
@@ -39,6 +42,23 @@ export default function Sidebar(){
                 {/* Sidebar Links */}
                 <div className="px-2">
                     <SidebarLink href="/dashboard" name="Dashboard" icon={LayoutDashboard} />
+                    <SidebarLink href="/dashboard/activity" name="Activity" icon={ClipboardCheck} />
+                    {/* <SidebarLink href="/dashboard/workspace" name="WorkSpaces" icon={ClipboardCheck} /> */}
+                    
+                    {/* Workspaces */}
+                        <div onClick={()=> setShowWorkspaces(!showWorkspaces)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
+                            <Briefcase size={20} />
+                            <span>Workspaces</span>
+                            {showWorkspaces ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </div>
+                        {
+                            showWorkspaces && 
+                            <div className="pl-5">
+                                <SidebarLink href="/dashboard/workspaces" name="Home" icon={House} />
+                            </div>
+                        }
+                        
+
                     <SidebarLink href="/dashboard/tasks" name="Task" icon={ClipboardCheck} />
                     <SidebarLink href="/dashboard/users" name="Users" icon={UsersRound} />
                 </div>
