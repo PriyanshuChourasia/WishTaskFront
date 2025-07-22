@@ -1,14 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IUserDetailInterface } from "../../shared/Interfaces/UserDetailInterface";
+import { UserDetailInitialState } from "../../shared/intialstate/UserDetailInitialState";
 
 
 export interface initialStateType{
     isSidebarCollapsed:boolean;
     isDarkMode:boolean;
+    userDetails:IUserDetailInterface
 }
 
 export const initialState:initialStateType={
     isSidebarCollapsed: false,
-    isDarkMode: false
+    isDarkMode: false,
+    userDetails: UserDetailInitialState
 }
 
 
@@ -21,9 +25,12 @@ export const globalSlice = createSlice({
         },
         setIsDarkMode:(state,action:PayloadAction<boolean>)=>{
             state.isDarkMode = action.payload;
+        },
+        setUserDetails:(state,action:PayloadAction<IUserDetailInterface>)=>{
+            state.userDetails = action.payload;
         }
     }
 });
 
-export const {setIsDarkMode,setIsSidebarCollapsed} = globalSlice.actions;
+export const {setIsDarkMode,setIsSidebarCollapsed,setUserDetails} = globalSlice.actions;
 export default globalSlice.reducer;

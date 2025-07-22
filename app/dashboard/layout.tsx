@@ -4,12 +4,21 @@ import '../globals.css';
 import Navbar from '../ui/dashboard/navbar/Navbar';
 import Sidebar from '../ui/dashboard/sidebar/Sidebar';
 import { useAppDispatch, useAppSelector } from '../ui/redux';
+import { GetUserDetails } from '../ui/shared/api/hooks/GetUserDetail';
+import { setUserDetails } from '../ui/redux/global';
 
 
 export default function Layout({children}:{children:React.ReactNode}){
     const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
     const dispatch = useAppDispatch();
+    const {data,isSuccess} = GetUserDetails();
+
+    useEffect(()=>{
+        if(isSuccess && data.data.success){
+            dispatch(setUserDetails(data.data));
+        }
+    },[isSuccess,data]),
 
     useEffect(()=>{
         if(isDarkMode){

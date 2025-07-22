@@ -4,11 +4,15 @@ import { ILoginRequest } from "../interfaces/LoginRequest"
 import { loginUser } from "../services/api"
 import toast from "react-hot-toast"
 import Cookies from "js-cookie"
+import { useRouter } from "next/navigation"
 
 
 
 
 export const LoginMutation = () =>{
+
+    const router = useRouter();
+
     return useMutation({
         mutationKey:[loginQueryKey],
         mutationFn:(loginRequest:ILoginRequest)=>{
@@ -18,6 +22,7 @@ export const LoginMutation = () =>{
         onSuccess:(data)=>{
             const accessToken = data.data.data.access_token;
             if(accessToken){
+                router.push("/dashboard");
                 toast.success("Login Successfull",{
                     removeDelay: 2000,
                     position:"top-center"
