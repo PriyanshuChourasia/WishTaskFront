@@ -12,13 +12,16 @@ export default function Layout({children}:{children:React.ReactNode}){
     const isSidebarCollapsed = useAppSelector((state) => state.global.isSidebarCollapsed);
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
     const dispatch = useAppDispatch();
-    const {data,isSuccess} = GetUserDetails();
+    const {data,isSuccess,isError} = GetUserDetails();
 
     useEffect(()=>{
         if(isSuccess && data.data.success){
             dispatch(setUserDetails(data.data));
         }
-    },[isSuccess,data]),
+        else if(isError){
+            console.log("Error",isError);
+        }
+    },[isSuccess,data,isError]),
 
     useEffect(()=>{
         if(isDarkMode){

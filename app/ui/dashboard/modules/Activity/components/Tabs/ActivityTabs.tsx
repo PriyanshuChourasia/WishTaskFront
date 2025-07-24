@@ -5,17 +5,20 @@ import { BoardView } from "../BoardView/BoardView";
 import { ListView } from "../ListView/ListView";
 import { TableView } from "../TableView/TableView";
 import { TimelineView } from "../TimelineView/TimelineView";
-import { Kanban, List, SquareKanban } from "lucide-react";
+import { Kanban, List, Sheet, SquareKanban } from "lucide-react";
 import ActivityCreateModal from "../CreateModal/ActivityCreateModal";
 import { useAppSelector } from "@/app/ui/redux";
 import { GetActivityById } from "../../hooks/GetActivityById";
+import ImportDropdown from "../ImportButtons/ImportDropdown";
+import ImportExcelButton from "../ImportButtons/ImportExcelButton";
+import ImportExcelFileModal from "../ImportButtons/Components/ImportFileModal";
 
 
 
 
 export default function ActivityTabs(){
     
-    const userID = useAppSelector((state)=> state.global.userDetails.data.id);
+    const userID = useAppSelector((state)=> state.global.userDetails?.data?.id);
 
     const {data,isLoading} = GetActivityById(userID);
 
@@ -38,13 +41,17 @@ export default function ActivityTabs(){
                             <List />
                             <span>List</span>
                         </TabsTrigger>
-                        <TabsTrigger className="cursor-pointer" value="Table">Table</TabsTrigger>
+                        <TabsTrigger className="cursor-pointer" value="Table">
+                            <Sheet />
+                            <span>Table</span>
+                        </TabsTrigger>
                         <TabsTrigger className="cursor-pointer" value="Timeline">Timeline</TabsTrigger>
                     </div>
-                    <div>
+                    <div className="space-x-4">
                         {/* <input type="search" name="" id="" /> */}
                         {/* Add Search Filter Sort */}
-
+                        {/* Import Button */}
+                        <ImportExcelFileModal/>
                         {/* Create Activity */}
                         <ActivityCreateModal/>
                     </div> 

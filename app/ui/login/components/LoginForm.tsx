@@ -8,7 +8,7 @@ import { LoginMutation } from "../hooks/LoginMutation";
 export default function LoginForm(){
 
     const [showPassword,setShowPassword] = useState<boolean>(false);
-    const {mutate} = LoginMutation();
+    const {mutate,isPending} = LoginMutation();
 
 
     return(
@@ -62,7 +62,7 @@ export default function LoginForm(){
                                 </div>
                                 <div className="w-full">
                                     <button type="submit" className="bg-gray-900 text-md font-medium hover:bg-gray-950 text-white w-full rounded-lg cursor-pointer py-3 text-center">
-                                        Login
+                                        {isPending ? "Logging..." : "Login"}
                                     </button>
                                 </div>
                             </div>

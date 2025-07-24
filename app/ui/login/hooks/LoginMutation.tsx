@@ -22,7 +22,8 @@ export const LoginMutation = () =>{
         onSuccess:(data)=>{
             const accessToken = data.data.data.access_token;
             if(accessToken){
-                router.push("/dashboard");
+                console.log("next router push");
+                
                 toast.success("Login Successfull",{
                     removeDelay: 2000,
                     position:"top-center"
@@ -37,6 +38,7 @@ export const LoginMutation = () =>{
                     secure: true,
                     expires: 7,
                 });
+                router.push("/dashboard");
             }
         },
         onError:(error)=>{
