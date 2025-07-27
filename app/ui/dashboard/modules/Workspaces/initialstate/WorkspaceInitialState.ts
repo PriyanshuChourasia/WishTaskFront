@@ -5,7 +5,7 @@ import { IWorkspaceResponseInterface } from "../interfaces/WorkspaceResponseInte
 
 export const WorkspaceResponseInitialState:IWorkspaceResponseInterface={
     data: {
-        results: []
+        result: []
     },
     success: false,
     errors: {

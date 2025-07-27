@@ -7,12 +7,12 @@ import { getActivitiesById } from "../services/api"
 
 export const GetActivityById = (userid:string) =>{
     return useQuery({
-        queryKey:['get-activity-by-id'],
+        queryKey:['get-activity-by-id',userid],
         queryFn:() => getActivitiesById(userid),
-        retry:false,
+        retry:1,
         refetchOnReconnect:true,
-        refetchOnMount:false,
-        refetchOnWindowFocus:false,
+        refetchOnMount:true,
+        refetchOnWindowFocus:true,
         enabled: !!userid
     })
 }

@@ -36,10 +36,10 @@ export default function WorkspaceTabs(){
                 </div>
             </TabsList>
             <TabsContent value="overview">
-                <WorkspaceOverview  data={data?.data ? data.data.data.results : []}/>
+                <WorkspaceOverview  data={data?.data ? data.data.data.result : []}/>
             </TabsContent>
             <TabsContent value="board">
-                <WorkspaceBoard data={data?.data ? data.data.data.results : []} />
+                <WorkspaceBoard data={data?.data ? data.data.data.result : []} />
             </TabsContent>
         </Tabs>
     )

@@ -17,6 +17,6 @@ export interface ActivityResponse{
 
 export interface IActivityResponseInterface extends ISuccessWithError{
     data:{
-        results:ActivityResponse[]
+        result:ActivityResponse[]
     }
 }

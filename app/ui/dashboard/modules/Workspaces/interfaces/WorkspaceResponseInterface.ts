@@ -5,6 +5,6 @@ import { IWorkSpaceInterface } from "./CreateWorkspaceInterface"
 
 export interface IWorkspaceResponseInterface extends ISuccessWithError{
     data:{
-        results: IWorkSpaceInterface[]
+        result: IWorkSpaceInterface[]
     }
 }

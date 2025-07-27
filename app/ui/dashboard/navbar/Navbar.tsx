@@ -1,17 +1,28 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { Menu, Moon, Search, Settings, Sun, User, Users } from "lucide-react";
+import { LogOut, Menu, Moon, Search, Settings, Sun, User, Users } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../redux";
-import { setIsDarkMode, setIsSidebarCollapsed } from "../../redux/global";
+import { setIsDarkMode, setIsSidebarCollapsed, setUserDetails } from "../../redux/global";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import { UserDetailInitialState } from "../../shared/intialstate/UserDetailInitialState";
 
 
 
 export default function Navbar(){
 
+    const router = useRouter();
     const dispatch = useAppDispatch();
     const isSidebarCollapsed  = useAppSelector((state)=> state.global.isSidebarCollapsed);
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+
+    const handleLogout = ()=>{
+        dispatch(setUserDetails(UserDetailInitialState));
+        Cookies.remove("access_token");
+        Cookies.remove("refresh_token");
+        router.replace("/login");
+    }
 
     return(
         <nav className="flex sticky top-0 z-50 items-center justify-between bg-white pl-6 pr-8 py-3 dark:bg-black">
@@ -68,6 +79,10 @@ export default function Navbar(){
                             <DropdownMenuItem>
                                 <Users className="w-5 h-5"/>
                                 <span className="font-medium text-black dark:text-white">Teams</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={handleLogout}>
+                                <LogOut className="w-5 h-5 text-red-600"/>
+                                <span className="font-medium text-black dark:text-white">Logout</span>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

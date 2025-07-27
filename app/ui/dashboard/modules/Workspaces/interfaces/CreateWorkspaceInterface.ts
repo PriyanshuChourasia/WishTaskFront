@@ -9,7 +9,7 @@ export enum ViewModeStatus{
 
 
 export interface IWorkSpaceInterface{
-    id?: string,
+    id: string,
     name: string,
     viewMode: string,
     shared: boolean,
@@ -20,6 +20,6 @@ export interface IWorkSpaceInterface{
 
 export interface ICreateWorkspaceResponse extends ISuccessWithError{
     data:{
-        results: IWorkSpaceInterface
+        result: IWorkSpaceInterface
     }
 }

@@ -5,7 +5,7 @@ import { getWorkSpaceByUserId } from "../services/api"
 
 export const GetWorkspaceQuery = (id:string) =>{
     return useQuery({
-        queryKey:['get-workspaces-by-id'],
+        queryKey:['get-workspaces-by-id',id],
         queryFn:()=> getWorkSpaceByUserId(id),
         retry:1,
         refetchOnMount:false,

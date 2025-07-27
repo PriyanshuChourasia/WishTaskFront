@@ -3,6 +3,9 @@ import Cookies from "js-cookie";
 
 const axiosApi = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_ADMIN_API_URL}`,
+  headers:{
+    "Content-Type":"application/json"
+  }
 });
 
 axiosApi.interceptors.request.use(

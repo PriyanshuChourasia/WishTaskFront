@@ -1,6 +1,8 @@
 "use client"
 import { Card, CardAction, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IWorkSpaceInterface } from "../../../interfaces/CreateWorkspaceInterface"
+import { Badge } from "@/components/ui/badge";
+import { UpdateViewStatus } from "./UpdateViewStatus";
 
 
 interface BoardCardInterface{
@@ -13,7 +15,9 @@ export const BoardCard: React.FC<BoardCardInterface> = ({data}) =>{
         <Card className="overflow-hidden w-2/3 cursor-pointer">
             <CardHeader>
                 <CardTitle>{data.name}</CardTitle>
-                <CardAction>{data.viewMode}</CardAction>
+                <CardAction>
+                    <UpdateViewStatus viewMode={data.viewMode} id={data.id} />
+                </CardAction>
             </CardHeader>
             <CardContent>
                 {data.viewMode}

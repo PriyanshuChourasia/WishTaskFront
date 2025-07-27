@@ -9,8 +9,6 @@ import { Kanban, List, Sheet, SquareKanban } from "lucide-react";
 import ActivityCreateModal from "../CreateModal/ActivityCreateModal";
 import { useAppSelector } from "@/app/ui/redux";
 import { GetActivityById } from "../../hooks/GetActivityById";
-import ImportDropdown from "../ImportButtons/ImportDropdown";
-import ImportExcelButton from "../ImportButtons/ImportExcelButton";
 import ImportExcelFileModal from "../ImportButtons/Components/ImportFileModal";
 
 
@@ -57,13 +55,13 @@ export default function ActivityTabs(){
                     </div> 
                 </TabsList>
                 <TabsContent value="overview">
-                    <ActivityOverview data={data?.data ? data?.data.data.results : []} isLoading={isLoading}/>
+                    <ActivityOverview data={data?.data ? data?.data.data.result : []} isLoading={isLoading}/>
                 </TabsContent>
                 <TabsContent value="Board">
-                    <BoardView data={data?.data ? data?.data.data.results : []} isLoading={isLoading} />
+                    <BoardView data={data?.data ? data?.data.data.result : []} isLoading={isLoading} />
                 </TabsContent>
                 <TabsContent value="List">
-                    <ListView data={data?.data ? data?.data.data.results : []}/>
+                    <ListView data={data?.data ? data?.data.data.result : []}/>
                 </TabsContent>
                 <TabsContent value="Table">
                     <TableView/>
