@@ -1,15 +1,21 @@
 "use client";
-import { Briefcase, ChevronDown, ChevronUp, Grid3x2, House, X } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, Folder, FolderOpen, Grid3x2, House, X } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { setIsSidebarCollapsed } from "../../redux/global";
 import SidebarLink from "./SidebarLinks";
 import {LayoutDashboard, ClipboardCheck, UsersRound} from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { GetWorkspaceQuery } from "../modules/Workspaces/hooks/GetWorkspaceQuery";
+import { setWorkspaces } from "../modules/Workspaces/state";
 
 
 
 
 export default function Sidebar(){
+
+    const userId = useAppSelector((state)=> state.global.userDetails?.data?.id);
+
+    const {data,isSuccess} = GetWorkspaceQuery(userId);
 
     const [showWorkspaces,setShowWorkspaces] = useState<boolean>(false);
 
@@ -20,6 +26,12 @@ export default function Sidebar(){
     ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}
     `;
 
+    useEffect(()=>{
+        if(isSuccess){
+            console.log("data",data);
+            dispatch(setWorkspaces(data.data));
+        }
+    },[data,isSuccess]);
     return(
         <aside className={sidebarClassName}>
             <div className="flex h-[100%] w-full  flex-col justify-start ">
@@ -55,6 +67,11 @@ export default function Sidebar(){
                             showWorkspaces && 
                             <div className="pl-5">
                                 <SidebarLink href="/dashboard/workspaces" name="Home" icon={House} />
+                                {
+                                    data?.data && data.data.data.result.map((item,index)=>(
+                                        <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
+                                    ))
+                                }
                             </div>
                         }
                         

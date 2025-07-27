@@ -14,9 +14,7 @@ import { CreateWorkspaceModal } from "../Modals/CreateWorkspaceModal";
 
 export default function WorkspaceTabs(){
 
-    const userId = useAppSelector((state)=> state.global.userDetails?.data?.id);
-
-    const {data} = GetWorkspaceQuery(userId);
+    const workspace = useAppSelector((state)=> state.workspaceData.data.result);
 
     return(
         <Tabs defaultValue={'overview'}>
@@ -36,10 +34,10 @@ export default function WorkspaceTabs(){
                 </div>
             </TabsList>
             <TabsContent value="overview">
-                <WorkspaceOverview  data={data?.data ? data.data.data.result : []}/>
+                <WorkspaceOverview  data={workspace}/>
             </TabsContent>
             <TabsContent value="board">
-                <WorkspaceBoard data={data?.data ? data.data.data.result : []} />
+                <WorkspaceBoard/>
             </TabsContent>
         </Tabs>
     )
