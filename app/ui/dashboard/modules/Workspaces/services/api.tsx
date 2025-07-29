@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IWorkspaceResponseInterface } from "../interfaces/WorkspaceResponseInterface";
+import { IWorkspaceDetailResponse, IWorkspaceResponseInterface } from "../interfaces/WorkspaceResponseInterface";
 import axiosApi from "@/app/lib/AxiosConfig";
 import { ICreateWorkspaceResponse, IWorkSpaceInterface } from "../interfaces/CreateWorkspaceInterface";
 import { IUpdateWorkspace, IUpdateWorkspaceResponse } from "../interfaces/UpdateWorkspaceInterface";
@@ -43,5 +43,18 @@ export async function updateWorkspace(request:IUpdateWorkspace):Promise<AxiosRes
             return error.response as AxiosResponse<IUpdateWorkspaceResponse>;
         }
         throw new Error("Workspace not updated");
+    }
+}
+
+
+export async function getWorkspaceDetailById(workspaceId:string):Promise<AxiosResponse<IWorkspaceDetailResponse>>{
+    try{
+        const response = await axiosApi.get(`/workspace/details/${workspaceId}`);
+        return response;
+    }catch(error:unknown){
+        if(axios.isAxiosError(error) && error.response){
+            return error.response as AxiosResponse<IWorkspaceDetailResponse>;
+        }
+        throw new Error("Workspace not found");
     }
 }

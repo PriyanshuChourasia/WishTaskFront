@@ -1,3 +1,4 @@
+import { DynamicWorkspace } from '@/app/ui/dashboard/modules/Workspaces/modules/DynamicWorkspace/DynamicWorkspace';
 import { use } from 'react';
 
 interface Params {
@@ -10,6 +11,8 @@ interface Params {
 
 export default function Page({params}:Params){
     return (
-        <div>WorkSpace ID {params.id} </div>
+        <div>
+          <DynamicWorkspace workspaceId={params.id} />
+        </div>
     )
 }

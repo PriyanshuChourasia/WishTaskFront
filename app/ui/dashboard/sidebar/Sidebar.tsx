@@ -7,6 +7,7 @@ import {LayoutDashboard, ClipboardCheck, UsersRound} from "lucide-react";
 import { useEffect, useState } from "react";
 import { GetWorkspaceQuery } from "../modules/Workspaces/hooks/GetWorkspaceQuery";
 import { setWorkspaces } from "../modules/Workspaces/state";
+import { PiUsersThree } from "react-icons/pi";
 
 
 
@@ -18,6 +19,7 @@ export default function Sidebar(){
     const {data,isSuccess} = GetWorkspaceQuery(userId);
 
     const [showWorkspaces,setShowWorkspaces] = useState<boolean>(false);
+    const [teams,setTeams] = useState<boolean>(false);
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
@@ -55,6 +57,7 @@ export default function Sidebar(){
                 <div className="px-2">
                     <SidebarLink href="/dashboard" name="Dashboard" icon={LayoutDashboard} />
                     <SidebarLink href="/dashboard/activity" name="Activity" icon={ClipboardCheck} />
+                    <SidebarLink href="/dashboard/users" name="Users" icon={UsersRound} />
                     {/* <SidebarLink href="/dashboard/workspace" name="WorkSpaces" icon={ClipboardCheck} /> */}
                     
                     {/* Workspaces */}
@@ -69,15 +72,37 @@ export default function Sidebar(){
                                 <SidebarLink href="/dashboard/workspaces" name="Home" icon={House} />
                                 {
                                     data?.data && data.data.data.result.map((item,index)=>(
-                                        <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
+                                        <SidebarLink 
+                                            key={index} href={`/dashboard/workspaces/${item.id}`} 
+                                            name={item.name} 
+                                            icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder}
+                                            iconColor={`${item.viewMode === "PUBLIC" ? "#00c951" : "#fb2c36"}`}
+                                        />
                                     ))
                                 }
                             </div>
                         }
+                        {/* Teams */}
+                        <div onClick={()=> setTeams(!teams)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
+                            <PiUsersThree size={20} />
+                            <span>Teams</span>
+                            {teams ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                        </div>
+                           {
+                                teams && 
+                                <div className="pl-5">
+                                    <SidebarLink href="/dashboard/teams" name="Home" icon={House} />
+                                    {/* {
+                                        data?.data && data.data.data.result.map((item,index)=>(
+                                            <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
+                                        ))
+                                    } */}
+                                </div>
+                            }
                         
 
                     <SidebarLink href="/dashboard/tasks" name="Task" icon={ClipboardCheck} />
-                    <SidebarLink href="/dashboard/users" name="Users" icon={UsersRound} />
+                   
                 </div>
 
             </div>

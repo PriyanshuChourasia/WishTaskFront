@@ -8,3 +8,20 @@ export interface IWorkspaceResponseInterface extends ISuccessWithError{
         result: IWorkSpaceInterface[]
     }
 }
+
+
+
+
+export interface IWorkspaceDetailResponse extends ISuccessWithError{
+    data:{
+        result:{
+            id:string,
+            name:string,
+            noOfProjects: number,
+            viewMode: string,
+            shared: boolean,
+            createdBy:string,
+            createdAt:string
+        }
+    }
+}

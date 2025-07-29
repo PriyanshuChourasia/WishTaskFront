@@ -50,6 +50,7 @@ input[type='number']::-webkit-outer-spin-button {
   --color-dark-tertiary: "#3b3d40";
   --color-blue-primary: "#0275ff";
   --color-stroke-dark: "#2d3135"
+  --color-blue-button: "#2464e5";
 }
 
 
@@ -125,7 +126,7 @@ input[type='number']::-webkit-outer-spin-button {
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-ring: hwb(0 63% 37%);
 }
 
 .dark {
