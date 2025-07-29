@@ -7,6 +7,6 @@ export interface ICreateProjectInterface{
     topic:string,
     description:string,
     startDate:string,
-    dueDate:string
+    dueDate:string,
     workspaceId:string
 }

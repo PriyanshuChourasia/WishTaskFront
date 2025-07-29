@@ -5,7 +5,7 @@ import toast from "react-hot-toast"
 
 
 
-export const CreateProject = () =>{
+export const CreateProjectHook = () =>{
     return useMutation({
         mutationKey:['create-project-mutation-key'],
         mutationFn:(request: ICreateProjectInterface)=>{

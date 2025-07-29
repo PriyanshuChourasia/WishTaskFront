@@ -9,7 +9,6 @@ import { useAppSelector } from "@/app/ui/redux";
 export const WorkspaceBoard = () =>{
 
     const workspaces = useAppSelector((state)=> state.workspaceData.data.result);
-    console.log("workspsaces ",workspaces);
 
     if(workspaces.length < 1){
         return(

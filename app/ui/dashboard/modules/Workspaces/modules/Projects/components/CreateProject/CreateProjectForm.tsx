@@ -1,17 +1,32 @@
 "use client";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Button } from "@/components/ui/button";
-import { useAppSelector } from "@/app/ui/redux";
 import { useEffect } from "react";
 import { CreateProjectValidationSchema } from "../../hooks/CreateProjectValidation";
+import { CreateProjectHook } from "../../hooks/CreateProjectHook";
+import { useAppSelector } from "@/app/ui/redux";
 
 
 
 
 export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> void}){
 
-    const userId = useAppSelector((state)=> state.global.userDetails.data.id);
-    // const {mutate,isPending,isSuccess} = CreateActivityHook();
+
+    const today  = function dateFormat():string{
+        const datee = new Date();
+        const year = datee.getFullYear();
+        const month = datee.getMonth();
+        const date = datee.getDate();
+        return `${year}-${month < 10 ? `0${month}` : month}-${date< 10 ? `0${date}` : date}`;
+    }
+
+    console.log(today());
+
+    
+    const {mutate,isPending,isSuccess} = CreateProjectHook();
+    const workspaceId = useAppSelector((state) => state.projectData.workspaceId);
+
+    console.log(workspaceId,"id")
 
     useEffect(()=>{
         if(isSuccess){
@@ -23,7 +38,14 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
         <Formik
             onSubmit={(values,action)=>{
                 console.log(action,values);
-                mutate(values);
+                mutate({
+                    name: values.name,
+                    topic: values.topic,
+                    description: values.description,
+                    startDate: new Date(values.startDate).toISOString(),
+                    dueDate: new Date(values.dueDate).toISOString(),
+                    workspaceId: values.workspaceId
+                });
                 setTimeout(() => {
                     action.setSubmitting(false);
                 }, 600);
@@ -34,15 +56,15 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
                 name:"",
                 topic:"",
                 description:"",
-                startDate:"",
-                dueDate:"",
-                workspaceId:"",
+                startDate:today(),
+                dueDate:today(),
+                workspaceId:workspaceId,
             }}
             validationSchema={CreateProjectValidationSchema}
         >
             {({resetForm})=>(
                 <Form>
-                    <div className="flex flex-col gap-2 mb-2">
+                    <div className="flex flex-col overflow-hidden gap-2 mb-2">
                         <label htmlFor="name">Name</label>
                         <Field 
                             name="name"
@@ -75,30 +97,16 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
                         />
                         <ErrorMessage component={'div'} name="description" className="text-red-500" />
                     </div>
-                    <div className="flex flex-col gap-2 mb-4">
-                        <label htmlFor="status">Status</label>
-                        <Field 
-                            as="select"
-                            name="status"
-                            id="status"
-                            className="outline-none text-sm border-[1px] rounded dark:bg-black dark:border-gray-400 focus:dark:border-gray-100 py-1 px-1 border-gray-700 hover:border-gray-800"
-                        >
-                            {
-                                Object.values(ActivityStatus).map((item,index)=>(
-                                    <option className="text-sm dark:text-white" key={index} value={item}>{item}</option>
-                                ))
-                            }
-                        </Field>
-                    </div>
-                    <div className="flex justify-between mb-6">
+                    <div className="flex justify-between mt-3 mb-6">
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="startTime">Start Time</label>
-                            <Field type="datetime-local" className="border-2 border-gray-300 rounded px-2 dark:text-white" name="startTime" id="startTime" />
+                            <label htmlFor="startDate">Start Time</label>
+                            <Field type="date"  className="border-2 border-gray-300 rounded px-2 dark:text-white" name="startDate" id="startDate" />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="endTime">End Time</label>
-                            <Field type="datetime-local" className="border-2 border-gray-300 rounded px-2 dark:text-white" name="endTime" id="endTime" />
+                            <label htmlFor="dueDate">End Time</label>
+                            <Field type="date" className="border-2 border-gray-300 rounded px-2 dark:text-white" name="dueDate" id="dueDate" />
                         </div>
+                        <Field type="text" className="border-2 sr-only border-gray-300 rounded px-2 dark:text-white" value={workspaceId} name="workspaceId" id="workspaceId" />
                     </div>
                     <div className="flex gap-4 justify-end">
                         <Button onClick={()=> {resetForm(); setOpen(false)}} className="border-2 dark:text-black border-red-500 hover:bg-white py-4  bg-white text-black">Cancel</Button>

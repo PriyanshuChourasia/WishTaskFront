@@ -1,7 +1,12 @@
+"use client";
 import { DynamicWorkspace } from '@/app/ui/dashboard/modules/Workspaces/modules/DynamicWorkspace/DynamicWorkspace';
-import { use } from 'react';
+import { setWorkspaceId } from '@/app/ui/dashboard/modules/Workspaces/modules/Projects/state';
+import { useAppDispatch } from '@/app/ui/redux';
+import { usePathname } from 'next/navigation';
+import React, { useEffect } from 'react';
 
-interface Params {
+
+type Params = {
   params: {
     id: string;
   };
@@ -10,9 +15,20 @@ interface Params {
 
 
 export default function Page({params}:Params){
-    return (
-        <div>
-          <DynamicWorkspace workspaceId={params.id} />
-        </div>
-    )
+
+  const dispatch = useAppDispatch();
+  const pathName = usePathname();
+  
+  const pathId = pathName.split('/');
+  const Id = pathId[pathId.length - 1];
+
+  useEffect(()=>{
+    dispatch(setWorkspaceId(Id));
+  },[]);
+
+  return (
+      <div>
+        <DynamicWorkspace workspaceId={Id} />
+      </div>
+  )
 }

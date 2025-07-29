@@ -1,3 +1,4 @@
+import ProjectBody from "./components/ProjectBody"
 import { ProjectHeader } from "./components/ProjectHeader"
 
 
@@ -7,8 +8,9 @@ import { ProjectHeader } from "./components/ProjectHeader"
 
 export const Project = () =>{
     return(
-        <div className="mt-4 shadow-lg rounded-md">
+        <div className="mt-4  rounded-md">
             <ProjectHeader/>
+            <ProjectBody/>
         </div>
     )
 }

@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Plus, Search } from "lucide-react"
+import { CreateProject } from "./CreateProject/CreateProject"
 
 
 
 export const ProjectHeader = () =>{
     return(
-        <div className="py-3 px-2 w-full grid grid-cols-2">
+        <div className="py-3 px-2 shadow-lg rounded-lg w-full grid grid-cols-2">
             <div>
                 <div className="border-[1px] flex px-2 rounded-md items-center border-gray-700 focus-within:border-gray-900">
                     <Search size={18}/>
@@ -13,7 +14,7 @@ export const ProjectHeader = () =>{
                 </div>
             </div>
             <div className="flex items-center justify-end">
-                
+                <CreateProject/>
             </div>
         </div>
     )
