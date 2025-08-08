@@ -12,7 +12,7 @@ export const BoardCard: React.FC<BoardCardInterface> = ({data}) =>{
 
 
     return(
-        <Card className="w-full max-w-sm">
+        <Card className="w-full mb-3">
             <CardHeader>
                 <CardTitle>
                     <div className="flex justify-between mb-2">

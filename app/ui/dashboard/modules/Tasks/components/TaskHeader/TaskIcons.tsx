@@ -8,7 +8,7 @@ export const TaskIcons = () =>{
     return(
         <div className="w-full flex gap-3 justify-end items-center px-4">
             <CreateTask/>
-            <Funnel className="w-5 h-5  dark:text-white cursor-pointer" />
+            <Funnel className="w-5 h-5  dark:text-black cursor-pointer" />
         </div>
     )
 }

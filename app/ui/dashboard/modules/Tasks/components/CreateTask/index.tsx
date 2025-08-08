@@ -18,7 +18,7 @@ export const CreateTask = () => {
     return(
         <Dialog open={open}>
             <DialogTrigger asChild>
-                <Button onClick={()=> setOpen(!open)} className="!bg-blue-button cursor-pointer">Create <Plus className="w-4 h-4"/></Button>
+                <Button onClick={()=> setOpen(!open)} className="!bg-blue-button dark:text-white cursor-pointer">Create <Plus className="w-4 h-4"/></Button>
             </DialogTrigger>
             <DialogContent showCloseButton={false} className="sm:max-w-[425px]">
                 <DialogHeader>

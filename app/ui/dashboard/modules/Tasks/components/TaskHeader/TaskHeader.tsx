@@ -16,19 +16,19 @@ export const TaskHeader = () =>{
     return(
         <div className="w-full">
             <Tabs defaultValue="overview">
-                <TabsList className="flex justify-between w-full h-14 px-2 !bg-gray-200">
+                <TabsList className="flex justify-between w-full h-14 px-2 dark:text-black !bg-gray-200">
                     <div>
-                        <TabsTrigger className="cursor-pointer" value="overview">
-                            <SquareKanban />
-                            <span>Overview</span>
+                        <TabsTrigger className="cursor-pointer dark:text-black" value="overview">
+                            <SquareKanban className="dark:text-black"/>
+                            <span className="dark:text-black">Overview</span>
                         </TabsTrigger>
-                        <TabsTrigger className="cursor-pointer" value="board">
-                            <SquareKanban />
-                            <span>Board</span>
+                        <TabsTrigger className="cursor-pointer dark:text-black" value="board">
+                            <SquareKanban className="dark:text-black" />
+                            <span className="dark:text-black">Board</span>
                         </TabsTrigger>
-                        <TabsTrigger className="cursor-pointer" value="table">
-                            <SquareKanban />
-                            <span>Table</span>
+                        <TabsTrigger className="cursor-pointer dark:text-black" value="table">
+                            <SquareKanban className="dark:text-black" />
+                            <span className="dark:text-black">Table</span>
                         </TabsTrigger>
                     </div>
                     <div className="overflow-hidden flex">
