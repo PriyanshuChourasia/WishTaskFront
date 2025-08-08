@@ -1,0 +1,8 @@
+export enum WorkStatusEnum{
+    DRAFT = "DRAFT",
+    ASSIGNED = "ASSIGNED",
+    INPROGRESS = "INPROGRESS",
+    INREVIEW = "INREVIEW",
+    REASSIGNED = "REASSIGNED",
+    COMPLETED = "COMPLETED"
+}

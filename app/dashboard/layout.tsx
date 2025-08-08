@@ -5,7 +5,8 @@ import Navbar from '../ui/dashboard/navbar/Navbar';
 import Sidebar from '../ui/dashboard/sidebar/Sidebar';
 import { useAppDispatch, useAppSelector } from '../ui/redux';
 import { GetUserDetails } from '../ui/shared/api/hooks/GetUserDetail';
-import { setUserDetails } from '../ui/redux/global';
+import { setAllUserDetails, setUserDetails } from '../ui/redux/global';
+import { GetAllUserDetail } from '../ui/shared/api/hooks/GetAllUserDetail';
 
 
 export default function Layout({children}:{children:React.ReactNode}){
@@ -13,6 +14,7 @@ export default function Layout({children}:{children:React.ReactNode}){
     const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
     const dispatch = useAppDispatch();
     const {data,isSuccess,isError} = GetUserDetails();
+    const {data:allUser,isSuccess:isAllUserSuccess} = GetAllUserDetail();
 
     useEffect(()=>{
         if(isSuccess && data.data.success){
@@ -30,6 +32,12 @@ export default function Layout({children}:{children:React.ReactNode}){
             document.documentElement.classList.remove('dark');
         }
     },[isDarkMode]);
+
+    useEffect(()=>{
+        if(isAllUserSuccess){
+            dispatch(setAllUserDetails(allUser.data));
+        }
+    },[allUser,isAllUserSuccess]);
 
 
     return (

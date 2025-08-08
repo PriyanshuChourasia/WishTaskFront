@@ -1,10 +1,11 @@
+import Tasks from "@/app/ui/dashboard/modules/Tasks/Tasks";
 
 
 
 export default function Page(){
     return(
-        <div>
-            <h1>Tasks Dashboard</h1>
-        </div>
+        <>
+            <Tasks/>
+        </>
     )
 }

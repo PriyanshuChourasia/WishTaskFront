@@ -24,7 +24,7 @@ export default function Sidebar(){
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
 
-    const sidebarClassName=`fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 h-full z-[100] dark:bg-black dark:text-white overflow-y-auto bg-white 
+    const sidebarClassName=`fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 ease-out h-full z-[50] dark:bg-black dark:text-white overflow-y-auto bg-white 
     ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}
     `;
 
@@ -57,52 +57,49 @@ export default function Sidebar(){
                 <div className="px-2">
                     <SidebarLink href="/dashboard" name="Dashboard" icon={LayoutDashboard} />
                     <SidebarLink href="/dashboard/activity" name="Activity" icon={ClipboardCheck} />
+                    <SidebarLink href="/dashboard/tasks" name="Task" icon={ClipboardCheck} />
                     <SidebarLink href="/dashboard/users" name="Users" icon={UsersRound} />
                     {/* <SidebarLink href="/dashboard/workspace" name="WorkSpaces" icon={ClipboardCheck} /> */}
                     
                     {/* Workspaces */}
-                        <div onClick={()=> setShowWorkspaces(!showWorkspaces)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
-                            <Briefcase size={20} />
-                            <span>Workspaces</span>
-                            {showWorkspaces ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
-                        </div>
-                        {
-                            showWorkspaces && 
-                            <div className="pl-5">
-                                <SidebarLink href="/dashboard/workspaces" name="Home" icon={House} />
-                                {
-                                    data?.data && data.data.data.result.map((item,index)=>(
-                                        <SidebarLink 
-                                            key={index} href={`/dashboard/workspaces/${item.id}`} 
-                                            name={item.name} 
-                                            icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder}
-                                            iconColor={`${item.viewMode === "PUBLIC" ? "#00c951" : "#fb2c36"}`}
-                                        />
-                                    ))
-                                }
-                            </div>
-                        }
-                        {/* Teams */}
-                        <div onClick={()=> setTeams(!teams)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
-                            <PiUsersThree size={20} />
-                            <span>Teams</span>
-                            {teams ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
-                        </div>
-                           {
-                                teams && 
-                                <div className="pl-5">
-                                    <SidebarLink href="/dashboard/teams" name="Home" icon={House} />
-                                    {/* {
-                                        data?.data && data.data.data.result.map((item,index)=>(
-                                            <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
-                                        ))
-                                    } */}
-                                </div>
+                    <div onClick={()=> setShowWorkspaces(!showWorkspaces)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
+                        <Briefcase size={20} />
+                        <span>Workspaces</span>
+                        {showWorkspaces ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                    </div>
+                    {
+                        showWorkspaces && 
+                        <div className="pl-5">
+                            <SidebarLink href="/dashboard/workspaces" name="Home" icon={House} />
+                            {
+                                data?.data && data.data.data.result.map((item,index)=>(
+                                    <SidebarLink 
+                                        key={index} href={`/dashboard/workspaces/${item.id}`} 
+                                        name={item.name} 
+                                        icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder}
+                                        iconColor={`${item.viewMode === "PUBLIC" ? "#00c951" : "#fb2c36"}`}
+                                    />
+                                ))
                             }
-                        
-
-                    <SidebarLink href="/dashboard/tasks" name="Task" icon={ClipboardCheck} />
-                   
+                        </div>
+                    }
+                    {/* Teams */}
+                    <div onClick={()=> setTeams(!teams)} className="flex items-center cursor-pointer pl-4 gap-2 py-2">
+                        <PiUsersThree size={20} />
+                        <span>Teams</span>
+                        {teams ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
+                    </div>
+                    {
+                        teams && 
+                        <div className="pl-5">
+                            <SidebarLink href="/dashboard/teams" name="Home" icon={House} />
+                            {/* {
+                                data?.data && data.data.data.result.map((item,index)=>(
+                                    <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
+                                ))
+                            } */}
+                        </div>
+                    }
                 </div>
 
             </div>
