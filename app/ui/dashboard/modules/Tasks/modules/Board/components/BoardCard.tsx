@@ -1,6 +1,8 @@
 "use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { ITaskResponse } from "../../../interfaces/TaskResponse"
+import { WorkStatusColor, WorkStatusTextColor } from "@/app/ui/utils/Enums/WorkStatusEnum";
+import { Badge } from "@/components/ui/badge";
 
 
 interface BoardCardInterface{
@@ -17,7 +19,7 @@ export const BoardCard: React.FC<BoardCardInterface> = ({data}) =>{
                 <CardTitle>
                     <div className="flex justify-between mb-2">
                         <h1>{data.name}</h1>
-                        <div>{data.status}</div>
+                        <Badge variant={'outline'} style={{color: WorkStatusTextColor[data.status] , backgroundColor: WorkStatusColor[data.status]}} className="underline py-1 font-semibold underline-offset-2">{data.status}</Badge>
                     </div>
                 </CardTitle>
                 <CardDescription>

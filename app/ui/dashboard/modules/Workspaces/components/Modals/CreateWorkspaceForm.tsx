@@ -52,20 +52,22 @@ export default function CreateWorkspaceForm({setOpen}:{setOpen:(open:boolean)=> 
                         />
                         <ErrorMessage component={'div'} name="name" className="text-red-500" />
                     </div>
-                    <div className="flex flex-col gap-2 mb-4">
-                        <label htmlFor="viewMode">View Mode</label>
-                        <Field 
-                            as="select"
-                            name="viewMode"
-                            id="viewMode"
-                            className="outline-none text-sm border-[1px] rounded dark:bg-black dark:border-gray-400 focus:dark:border-gray-100 py-1 px-1 border-gray-700 hover:border-gray-800"
-                        >
-                            {
-                                Object.values(ViewModeStatus).map((item,index)=>(
-                                    <option className="text-sm dark:text-white" key={index} value={item}>{item}</option>
-                                ))
-                            }
-                        </Field>
+                    <div className="flex justify-between items-center gap-2 mb-4">
+                        <div className="flex flex-col w-full gap-2">
+                            <label htmlFor="viewMode">View Mode</label>
+                            <Field 
+                                as="select"
+                                name="viewMode"
+                                id="viewMode"
+                                className="outline-none text-sm border-[1px] rounded dark:bg-black dark:border-gray-400 focus:dark:border-gray-100 py-1 px-1 border-gray-700 hover:border-gray-800"
+                            >
+                                {
+                                    Object.values(ViewModeStatus).map((item,index)=>(
+                                        <option className="text-sm dark:text-white" key={index} value={item}>{item}</option>
+                                    ))
+                                }
+                            </Field>
+                        </div>
                     </div>
                     <div className="flex gap-4 justify-end">
                         <Button onClick={()=> {resetForm(); setOpen(false)}} className="border-2 dark:text-black border-red-500 hover:bg-white py-4  bg-white text-black">Cancel</Button>

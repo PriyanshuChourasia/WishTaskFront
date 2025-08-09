@@ -18,6 +18,13 @@ export interface IWorkSpaceInterface{
 }
 
 
+export interface ICreateWorkspaceInterface{
+    name:string,
+    viewMode:string,
+    shared:boolean
+}
+
+
 export interface ICreateWorkspaceResponse extends ISuccessWithError{
     data:{
         result: IWorkSpaceInterface

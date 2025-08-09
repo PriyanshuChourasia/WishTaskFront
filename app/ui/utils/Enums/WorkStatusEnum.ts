@@ -17,3 +17,11 @@ export const WorkStatusColor: Record<string,string> = {
     "REASSIGNED" : "#1358D0",
     "COMPLETED" : "#1DB82B"
 }
+export const WorkStatusTextColor: Record<string,string> = {
+    "INPROGRESS": "#001F29",
+    "DRAFT" : "#5B00BD",
+    "ASSIGNED" : "#000000",
+    "INREVIEW" : "#000000",
+    "REASSIGNED" : "#D8F8FF",
+    "COMPLETED" : "#000406"
+}

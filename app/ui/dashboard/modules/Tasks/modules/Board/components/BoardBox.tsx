@@ -40,7 +40,7 @@ export const BoardBox = () =>{
                     <div key={index} className="h-full w-full min-w-[350px] max-w-lg px-4 rounded-md py-2 max-h-[80vh] overflow-y-auto  bg-gray-300">
                         <h1 style={{color: WorkStatusColor[item.status]}} className="mb-2 bg-gray-50 sticky top-0 left-0  w-fit px-2 py-1 rounded-md font-semibold pl-2">{item.status}</h1>
                         {
-                            item.tasks.map((task,index)=>(
+                            item.tasks.sort((a,b) => Math.floor(new Date(b.createdAt).getTime()) - Math.floor(new Date(a.createdAt).getTime())).map((task,index)=>(
                                 <BoardCard key={index} data={task} />
                             ))
                         }

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { IWorkspaceDetailResponse, IWorkspaceResponseInterface } from "../interfaces/WorkspaceResponseInterface";
 import axiosApi from "@/app/lib/AxiosConfig";
-import { ICreateWorkspaceResponse, IWorkSpaceInterface } from "../interfaces/CreateWorkspaceInterface";
+import { ICreateWorkspaceInterface, ICreateWorkspaceResponse, IWorkSpaceInterface } from "../interfaces/CreateWorkspaceInterface";
 import { IUpdateWorkspace, IUpdateWorkspaceResponse } from "../interfaces/UpdateWorkspaceInterface";
 
 
@@ -20,7 +20,7 @@ export async function getWorkSpaceByUserId(userId:string):Promise<AxiosResponse<
     }
 }
 
-export async function createWorkspace(request:IWorkSpaceInterface):Promise<AxiosResponse<ICreateWorkspaceResponse>>{
+export async function createWorkspace(request:ICreateWorkspaceInterface):Promise<AxiosResponse<ICreateWorkspaceResponse>>{
     try{
         const response = await axiosApi.post(`/workspace`,request);
         return response;

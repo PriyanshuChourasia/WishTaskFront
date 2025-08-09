@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { IWorkSpaceInterface } from "../interfaces/CreateWorkspaceInterface"
+import { ICreateWorkspaceInterface } from "../interfaces/CreateWorkspaceInterface"
 import { createWorkspace } from "../services/api"
 
 
@@ -9,7 +9,7 @@ export const CreateWorkdspaceMutation = () =>{
 
     return useMutation({
         mutationKey:['create-workspace-mutate'],
-        mutationFn: (request:IWorkSpaceInterface)=>{
+        mutationFn: (request:ICreateWorkspaceInterface)=>{
             return createWorkspace(request);
         },
         retry:false,
