@@ -3,18 +3,19 @@ import Cookies from "js-cookie";
 
 export async function middleware(request:NextRequest){
   const accessToken = request.cookies.get('access_token')?.value;
+  console.log("middle ware running");
 
     if (!accessToken) {
         return NextResponse.redirect(new URL('/login', request.url));
     }
 
     try {
+
         const res = await fetch('http://localhost:9000/api/health-check', {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
             },
         });
-
         if (!res.ok) {
             const response = NextResponse.redirect(new URL('/login', request.url));
             response.cookies.delete('access_token');
@@ -33,5 +34,5 @@ export async function middleware(request:NextRequest){
 
 
 export const config = {
-    matcher: '/dashboard/:path*'
+    matcher: ['/dashboard/:path*']
 }

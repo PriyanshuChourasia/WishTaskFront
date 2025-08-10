@@ -101,7 +101,7 @@ export const CreateForm: React.FC<CreateFormInterface> = ({setOpen}) =>{
                             <ErrorMessage name="description" component={'div'} className="text-red-500" />
                         </div>
                         <div className="flex items-center gap-3">
-                            {/* <div className="flex flex-col w-full">
+                            <div className="flex flex-col w-full">
                                 <label htmlFor="assignedTo" className="font-medium dark:text-white">Assigned To</label>
                                 <Field as="select" name="assignedTo" className="w-full dark:border-gray-400 dark:text-white py-2 mt-1 border-[1px] border-gray-600 focus:outline-black rounded focus:border-black">
                                     <option defaultValue={""}>Select user</option>
@@ -111,7 +111,7 @@ export const CreateForm: React.FC<CreateFormInterface> = ({setOpen}) =>{
                                         ))
                                     }
                                 </Field>
-                            </div> */}
+                            </div>
                             <div className="w-full">
                                 <label htmlFor="status" className="font-medium dark:text-white">Status</label>
                                 <Field as="select" name="status" className="w-full py-2 mt-1 dark:border-gray-400 dark:text-white border-[1px] border-gray-600 focus:outline-black rounded focus:border-black">

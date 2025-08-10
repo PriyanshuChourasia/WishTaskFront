@@ -1,3 +1,4 @@
+import Link from "next/link";
 import LoginForm from "./components/LoginForm";
 
 
@@ -20,9 +21,9 @@ export default function Login(){
                 <div className="">
                     <LoginForm/>
                     <div className="text-center mt-12">
-                        <p>
+                        <Link href={"/register"}>
                             Not a member? <span className="font-semibold cursor-pointer text-green-700">Register now</span>
-                        </p>
+                        </Link>
                     </div>
                 </div>
             </div>

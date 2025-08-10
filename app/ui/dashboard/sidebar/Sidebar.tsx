@@ -93,11 +93,11 @@ export default function Sidebar(){
                         teams && 
                         <div className="pl-5">
                             <SidebarLink href="/dashboard/teams" name="Home" icon={House} />
-                            {/* {
+                            {
                                 data?.data && data.data.data.result.map((item,index)=>(
                                     <SidebarLink key={index} href={`/dashboard/workspaces/${item.id}`} name={item.name} icon={item.viewMode === "PUBLIC" ? FolderOpen  : Folder} />
                                 ))
-                            } */}
+                            }
                         </div>
                     }
                 </div>

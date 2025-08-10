@@ -11,12 +11,12 @@ interface ProjectCardInterface{
 export const ProjectCard: React.FC<ProjectCardInterface> = ({data}) =>{
     return(
         <>
-            <Card className="w-full">
+            <Card className="lg:max-w-md xl:max-w-sm md:max-w-lg sm:max-w-xl">
                 <CardHeader>
-                    <CardTitle>{data.name}</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-center">{data.name}</CardTitle>
+                    {/* <CardDescription>
                         {data.topic}
-                    </CardDescription>
+                    </CardDescription> */}
                 </CardHeader>
                 <CardContent>
                     <div>
@@ -26,13 +26,13 @@ export const ProjectCard: React.FC<ProjectCardInterface> = ({data}) =>{
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <div className="flex justify-between items-center">
+                    <div className="flex w-full justify-between items-center">
                         <div className="flex flex-col items-center">
-                            <h2>Start</h2>
+                            <h2 className="font-medium">Start Date</h2>
                             <h3>{new Date(data.startDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit'})}</h3>
                         </div>
                         <div className="flex flex-col items-center">
-                            <h2>End</h2>
+                            <h2 className="font-medium">Tentative Date</h2>
                             <h3>{new Date(data.dueDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit'})}</h3>
                         </div>
                     </div>

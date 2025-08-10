@@ -53,6 +53,13 @@ input[type='number']::-webkit-outer-spin-button {
   --color-blue-button: #2464e5;
 }
 
+/* breakpoints */
+
+@theme{
+  --breakpoint-xs:25rem;
+  --text-base: 16px
+}
+
 
 @theme inline {
   --color-background: var(--background);
