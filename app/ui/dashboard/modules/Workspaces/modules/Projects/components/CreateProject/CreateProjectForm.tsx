@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { CreateProjectValidationSchema } from "../../hooks/CreateProjectValidation";
 import { CreateProjectHook } from "../../hooks/CreateProjectHook";
 import { useAppSelector } from "@/app/ui/redux";
+import { useQueryClient } from "@tanstack/react-query";
 
 
 
@@ -22,6 +23,7 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
 
     console.log(today());
 
+    const queryClient = useQueryClient();
     
     const {mutate,isPending,isSuccess} = CreateProjectHook();
     const workspaceId = useAppSelector((state) => state.projectData.workspaceId);
@@ -30,6 +32,7 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
 
     useEffect(()=>{
         if(isSuccess){
+            queryClient.invalidateQueries({queryKey:['get-project-by-workspace-id']});
             setOpen(false);
         }
     },[isSuccess]);
@@ -65,7 +68,7 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
             {({resetForm})=>(
                 <Form>
                     <div className="flex flex-col overflow-hidden gap-2 mb-2">
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Title</label>
                         <Field 
                             name="name"
                             id="name"
@@ -103,7 +106,7 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
                             <Field type="date"  className="border-2 border-gray-300 rounded px-2 dark:text-white" name="startDate" id="startDate" />
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label htmlFor="dueDate">End Time</label>
+                            <label htmlFor="dueDate">Tentative Time</label>
                             <Field type="date" className="border-2 border-gray-300 rounded px-2 dark:text-white" name="dueDate" id="dueDate" />
                         </div>
                         <Field type="text" className="border-2 sr-only border-gray-300 rounded px-2 dark:text-white" value={workspaceId} name="workspaceId" id="workspaceId" />

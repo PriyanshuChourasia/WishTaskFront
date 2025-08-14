@@ -12,7 +12,7 @@ export default function ProjectBody(){
     const {data,isLoading,isSuccess} = GetProjectByWorkspaceId(workspaceId);
 
     return(
-        <div className="py-4 px-2">
+        <div className="py-4 flex flex-wrap gap-3 px-2">
             {
                 isSuccess && 
                 data.data.data.result.map((item,index)=>(

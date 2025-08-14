@@ -24,7 +24,7 @@ export default function Sidebar(){
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector((state)=> state.global.isSidebarCollapsed);
 
-    const sidebarClassName=`fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 ease-out h-full z-[50] dark:bg-black dark:text-white overflow-y-auto bg-white 
+    const sidebarClassName=`fixed flex flex-col h-[100%]  justify-between shadow-xl transition-all duration-300 ease-out h-full z-[50] dark:bg-black dark:text-white overflow-y-auto bg-white 
     ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}
     `;
 
@@ -36,7 +36,7 @@ export default function Sidebar(){
     },[data,isSuccess]);
     return(
         <aside className={sidebarClassName}>
-            <div className="flex h-[100%] w-full  flex-col justify-start ">
+            <div className="flex h-[100%] w-full flex-col justify-start ">
                 {/* Top Logo */}
                 <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
                     <div className="text-xl font-bold text-gray-800 dark:text-white">

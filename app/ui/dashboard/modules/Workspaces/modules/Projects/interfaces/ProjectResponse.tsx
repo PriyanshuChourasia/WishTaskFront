@@ -1,6 +1,7 @@
 import { ISuccessWithError } from "@/app/ui/shared/Interfaces/SuccessInterface";
 
 export interface IProject{
+    id:string,
     name:string,
     topic:string,
     description:string,

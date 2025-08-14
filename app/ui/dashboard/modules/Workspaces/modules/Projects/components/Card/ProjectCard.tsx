@@ -1,5 +1,8 @@
+"use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IProject } from "../../interfaces/ProjectResponse"
+import { Info } from "lucide-react"
+import { useRouter,useParams } from "next/navigation";
 
 
 interface ProjectCardInterface{
@@ -9,17 +12,31 @@ interface ProjectCardInterface{
 
 
 export const ProjectCard: React.FC<ProjectCardInterface> = ({data}) =>{
+
+    const router = useRouter();
+    const params = useParams();
+    
+    const handleProject = (projectId:string) =>{
+        console.log(params,"params");
+        router.push(`${params.id}/${projectId}`)
+    }
+
+
     return(
         <>
-            <Card className="lg:max-w-md xl:max-w-sm md:max-w-lg sm:max-w-xl">
+            <Card className="w-full md:max-w-md ">
                 <CardHeader>
-                    <CardTitle className="text-center">{data.name}</CardTitle>
+                    <div className="flex items-center justify-between">
+                        <CardTitle className="text-center text-lg">{data.name}</CardTitle>
+                        <Info onClick={()=> handleProject(data.id)} size={17} className="text-black cursor-pointer" />
+                    </div>
+                    
                     {/* <CardDescription>
                         {data.topic}
                     </CardDescription> */}
                 </CardHeader>
                 <CardContent>
-                    <div>
+                    <div className="min-h-16 h-20 max-h-60">
                         <p>
                             {data.description}
                         </p>

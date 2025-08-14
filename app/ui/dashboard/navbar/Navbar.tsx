@@ -25,7 +25,7 @@ export default function Navbar(){
     }
 
     return(
-        <nav className="flex sticky top-0 z-50 items-center justify-between bg-white pl-6 pr-8 py-3 dark:bg-black">
+        <nav className="flex sticky top-0 z-40 items-center justify-between bg-white pl-6 pr-8 py-3 dark:bg-black">
             {/* Search Bar and bar */}
             <div className="flex items-center gap-8">
                 {
