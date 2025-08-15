@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { WorkStatusColor } from "@/app/ui/utils/Enums/WorkStatusEnum";
 
 
-interface TaskWithStatus extends Record<string,any>{
+interface TaskWithStatus extends Record<string,string | number | ITaskResponse[]>{
+    status:string;
     tasks:ITaskResponse[],
 }
 
@@ -16,21 +17,25 @@ export const BoardBox = () =>{
 
     const taskData = useAppSelector((state)=> state.taskResponseData.taskData);
     const [filteredTask,setFileteredTask] = useState<TaskWithStatus[]>([]);
-    const statusHeading = new Set(taskData.data.result.map(item => item.status));
 
     useEffect(()=>{
         const newFilteredTask:TaskWithStatus[] = [];
 
-        statusHeading.forEach(status=>{
-            const task = taskData.data.result.filter(x => x.status == status);
-            
-            const newTaskObj: TaskWithStatus = {
-                status:status,
-                tasks:task
-            };
-            newFilteredTask.push(newTaskObj);
-        });
-        setFileteredTask(newFilteredTask);
+        if(taskData){
+            const statusHeading = new Set(taskData.data.result.map(item => item.status));
+            statusHeading.forEach(status=>{
+                const task = taskData.data.result.filter(x => x.status == status);
+                
+                const newTaskObj: TaskWithStatus = {
+                    status:status,
+                    tasks:task
+                };
+                newFilteredTask.push(newTaskObj);
+            });
+            setFileteredTask(newFilteredTask);
+        }
+
+
     },[taskData]);
 
     return(

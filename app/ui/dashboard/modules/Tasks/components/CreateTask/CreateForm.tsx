@@ -27,7 +27,7 @@ export const CreateForm: React.FC<CreateFormInterface> = ({setOpen}) =>{
         if(isSuccess){
             setOpen(false);
         }
-    },[isSuccess]);
+    },[isSuccess,setOpen]);
 
     return(
         <Formik

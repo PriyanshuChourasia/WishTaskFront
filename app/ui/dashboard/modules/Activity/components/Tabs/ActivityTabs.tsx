@@ -20,7 +20,6 @@ export default function ActivityTabs(){
 
     const {data,isLoading} = GetActivityById(userID);
 
-    console.log("Data",data);
 
     return(
         <div className="w-full">
@@ -55,7 +54,7 @@ export default function ActivityTabs(){
                     </div> 
                 </TabsList>
                 <TabsContent value="overview">
-                    <ActivityOverview data={data?.data ? data?.data.data.result : []} isLoading={isLoading}/>
+                    <ActivityOverview  isLoading={isLoading}/>
                 </TabsContent>
                 <TabsContent value="Board">
                     <BoardView data={data?.data ? data?.data.data.result : []} isLoading={isLoading} />

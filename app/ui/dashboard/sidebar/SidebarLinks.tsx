@@ -15,7 +15,6 @@ interface SidebarLinkProps{
 export default function SidebarLink({name,href,iconColor,icon:Icon}:SidebarLinkProps){
 
     const pathname = usePathname();
-    console.log("pathname: ",pathname);
 
     return(
         <div className={`pr-4 pl-4 py-3 hover:bg-gray-100  transition-all duration-200 ease-in-out  ${pathname == href ? 'border-l-4 border-l-sky-600 bg-gray-200 dark:text-white rounded-sm text-black font-semibold dark:bg-gray-700' : ''}`}>

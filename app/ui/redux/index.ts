@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {persistReducer,FLUSH,REGISTER,REHYDRATE,PAUSE,PERSIST,PURGE, PersistConfig} from "redux-persist";
+import {persistReducer,FLUSH,REGISTER,REHYDRATE,PAUSE,PERSIST,PURGE} from "redux-persist";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import rootReducer from "./reducers";
 import { api } from "./state/api";
@@ -8,13 +8,13 @@ import { api } from "./state/api";
 
 
 const createNoopStorage = () => ({
-    getItem(_key:any){
+    getItem(_key:unknown){
         return Promise.resolve(null);
     },
-    setItem(_key:any,value:any){
+    setItem(_key:unknown,value:string | number | unknown){
         return Promise.resolve(value);
     },
-    removeItem(_key:any,value:any){
+    removeItem(_key:unknown,_value:unknown){
         return Promise.resolve();
     }
 });

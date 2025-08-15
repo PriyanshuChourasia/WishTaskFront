@@ -1,8 +1,9 @@
 "use client";
 import { GetWorkspaceDetailById } from "../../hooks/GetWorkspaceDetailById"
 import { WorkspaceDetail } from "../../initialstate/WorkspaceDetailnitialstate";
-import { Project } from "../Projects/Project";
+import WorkspaceBody from "./components/WorkspaceBody";
 import { WorkspaceHeader } from "./components/WorkspaceHeader";
+import WorkspaceNav from "./components/WorkspaceNav";
 
 
 interface DynamicWorkspaceInterface{
@@ -13,12 +14,13 @@ interface DynamicWorkspaceInterface{
 
 export const DynamicWorkspace: React.FC<DynamicWorkspaceInterface> = ({workspaceId}) => {
 
-    const {data,isFetching,isSuccess} = GetWorkspaceDetailById(workspaceId);
+    const {data,isFetching} = GetWorkspaceDetailById(workspaceId);
 
     return(
         <div className="px-4 py-4">
-            <WorkspaceHeader data={data?.data ? data.data.data.result : WorkspaceDetail} isLoading={isFetching} />
-            <Project/>
+            <WorkspaceNav data={data?.data ? data.data.data.result : WorkspaceDetail}  isLoading={isFetching} />
+            <WorkspaceHeader/>
+            <WorkspaceBody/>
         </div>
     )
 }

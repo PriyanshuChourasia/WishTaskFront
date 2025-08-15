@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { IProject } from "../../interfaces/ProjectResponse"
 import { Info } from "lucide-react"
 import { useRouter,useParams } from "next/navigation";
@@ -17,7 +17,6 @@ export const ProjectCard: React.FC<ProjectCardInterface> = ({data}) =>{
     const params = useParams();
     
     const handleProject = (projectId:string) =>{
-        console.log(params,"params");
         router.push(`${params.id}/${projectId}`)
     }
 
@@ -46,11 +45,11 @@ export const ProjectCard: React.FC<ProjectCardInterface> = ({data}) =>{
                     <div className="flex w-full justify-between items-center">
                         <div className="flex flex-col items-center">
                             <h2 className="font-medium">Start Date</h2>
-                            <h3>{new Date(data.startDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit'})}</h3>
+                            <h3>{new Date(data.startDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit',hour12:false,hour:'2-digit',minute:'2-digit'})}</h3>
                         </div>
                         <div className="flex flex-col items-center">
                             <h2 className="font-medium">Tentative Date</h2>
-                            <h3>{new Date(data.dueDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit'})}</h3>
+                            <h3>{new Date(data.dueDate).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit',hour12:false,hour:'2-digit',minute:'2-digit'})}</h3>
                         </div>
                     </div>
                 </CardFooter>

@@ -2,7 +2,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Kanban, SquareKanban } from "lucide-react";
 import { useAppSelector } from "@/app/ui/redux";
-import { GetWorkspaceQuery } from "../../hooks/GetWorkspaceQuery";
 import { WorkspaceOverview } from "../Overview/WorkspaceOverview";
 import { WorkspaceBoard } from "../Board/WorkspaceBoard";
 import { CreateWorkspaceModal } from "../Modals/CreateWorkspaceModal";

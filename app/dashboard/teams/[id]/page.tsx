@@ -2,15 +2,8 @@
 
 
 
-interface Params{
-    params:{
-        id:string
-    }
-}
-
-
-export default function Page({params}:Params){
+export default function Page(){
     return(
-        <div>Team ID {params.id}</div>
+        <div>Team ID</div>
     )
 }

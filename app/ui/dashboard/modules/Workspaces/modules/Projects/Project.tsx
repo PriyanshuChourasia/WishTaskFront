@@ -1,5 +1,7 @@
-import ProjectBody from "./components/ProjectBody"
-import { ProjectHeader } from "./components/ProjectHeader"
+"use client";
+
+// import {  usePathname } from "next/navigation";
+import { ProjectHeader } from "./components/Header/ProjectHeader";
 
 
 
@@ -7,10 +9,14 @@ import { ProjectHeader } from "./components/ProjectHeader"
 
 
 export const Project = () =>{
+
+    // const pathUrl = usePathname();
+    // const projectId = pathUrl.split('/')[pathUrl.split('/').length - 1];
+
+
     return(
-        <div className="mt-4  rounded-md">
+        <div className="px-4 py-2 rounded-md">
             <ProjectHeader/>
-            <ProjectBody/>
         </div>
     )
 }

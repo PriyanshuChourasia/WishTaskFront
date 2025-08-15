@@ -21,26 +21,23 @@ export default function CreateProjectForm({setOpen}:{setOpen:(open:boolean)=> vo
         return `${year}-${month < 10 ? `0${month}` : month}-${date< 10 ? `0${date}` : date}`;
     }
 
-    console.log(today());
 
     const queryClient = useQueryClient();
     
     const {mutate,isPending,isSuccess} = CreateProjectHook();
     const workspaceId = useAppSelector((state) => state.projectData.workspaceId);
 
-    console.log(workspaceId,"id")
 
     useEffect(()=>{
         if(isSuccess){
             queryClient.invalidateQueries({queryKey:['get-project-by-workspace-id']});
             setOpen(false);
         }
-    },[isSuccess]);
+    },[isSuccess,queryClient,setOpen]);
 
     return(
         <Formik
             onSubmit={(values,action)=>{
-                console.log(action,values);
                 mutate({
                     name: values.name,
                     topic: values.topic,

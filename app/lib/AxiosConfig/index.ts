@@ -10,8 +10,8 @@ const axiosApi = axios.create({
 
 axiosApi.interceptors.request.use(
   (config) => {
-    let localToken = Cookies.get("access_token") || "";
-    let token = `Bearer ${localToken}`;
+    const localToken = Cookies.get("access_token") || "";
+    const token = `Bearer ${localToken}`;
     if (localToken) {
       config.headers["Authorization"] = token;
     }
@@ -39,16 +39,16 @@ axiosApi.interceptors.response.use(
   }
 );
 
-const refreshAccessToken = async () => {
-  try {
-    const response = await axiosApi.post("/api/v1/auth/refresh-token", {});
+// const refreshAccessToken = async () => {
+//   try {
+//     const response = await axiosApi.post("/api/v1/auth/refresh-token", {});
 
-    const newToken = response.data.token;
+//     const newToken = response.data.token;
 
-    return newToken;
-  } catch (error) {
-    throw error;
-  }
-};
+//     return newToken;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export default axiosApi;

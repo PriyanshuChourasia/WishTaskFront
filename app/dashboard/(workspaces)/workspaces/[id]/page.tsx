@@ -6,15 +6,8 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react';
 
 
-type Params = {
-  params: {
-    id: string;
-  };
-}
 
-
-
-export default function Page({params}:Params){
+export default function Page(){
 
   const dispatch = useAppDispatch();
   const pathName = usePathname();
@@ -23,8 +16,10 @@ export default function Page({params}:Params){
   const Id = pathId[pathId.length - 1];
 
   useEffect(()=>{
-    dispatch(setWorkspaceId(Id));
-  },[]);
+    if(Id){
+      dispatch(setWorkspaceId(Id));
+    }
+  },[Id,dispatch]);
 
   return (
       <div>

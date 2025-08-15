@@ -1,5 +1,5 @@
 "use client";
-import { Briefcase, ChevronDown, ChevronUp, Folder, FolderOpen, Grid3x2, House, X } from "lucide-react";
+import { Briefcase, ChevronDown, ChevronUp, Folder, FolderOpen, House, X } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "../../redux";
 import { setIsSidebarCollapsed } from "../../redux/global";
 import SidebarLink from "./SidebarLinks";
@@ -30,10 +30,9 @@ export default function Sidebar(){
 
     useEffect(()=>{
         if(isSuccess){
-            console.log("data",data);
             dispatch(setWorkspaces(data.data));
         }
-    },[data,isSuccess]);
+    },[data,isSuccess,dispatch]);
     return(
         <aside className={sidebarClassName}>
             <div className="flex h-[100%] w-full flex-col justify-start ">

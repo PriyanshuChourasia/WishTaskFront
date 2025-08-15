@@ -10,7 +10,7 @@ interface BoardCardProps{
 }
 
 
-export const BoardCard: React.FC<BoardCardProps> = ({name,topic,description,startTime,endTime,createdAt}) =>{
+export const BoardCard: React.FC<BoardCardProps> = ({name,description,createdAt}) =>{
     return(
         <div className="py-6 px-2 min-w-[300px] bg-slate-50 mb-2 rounded">
             <div>

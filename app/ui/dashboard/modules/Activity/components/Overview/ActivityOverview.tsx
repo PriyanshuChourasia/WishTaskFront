@@ -1,16 +1,16 @@
 import { ClipLoader } from "react-spinners"
-import { ActivityResponse } from "../../interfaces/ActivityResponseInterface"
+// import { ActivityResponse } from "../../interfaces/ActivityResponseInterface"
 
 
 
 interface BoardViewProps{
-  data: ActivityResponse[],
+  // data: ActivityResponse[],
   isLoading: boolean,
 }
 
 
 
-export const ActivityOverview: React.FC<BoardViewProps> = ({data,isLoading}) => {
+export const ActivityOverview: React.FC<BoardViewProps> = ({isLoading}) => {
 
   if(isLoading){
       return(

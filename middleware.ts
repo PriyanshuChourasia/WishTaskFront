@@ -1,38 +1,25 @@
-import {NextRequest, NextResponse} from "next/server";
-import Cookies from "js-cookie";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request:NextRequest){
-  const accessToken = request.cookies.get('access_token')?.value;
-  console.log("middle ware running");
+export async function middleware(request: NextRequest) {
+  const accessToken = request.cookies.get("access_token")?.value;
+  const url = request.nextUrl;
 
-    if (!accessToken) {
-        return NextResponse.redirect(new URL('/login', request.url));
-    }
+  const publicPaths = ["/login", "/register"];
 
-    try {
+  if (!accessToken && !publicPaths.includes(url.pathname)) {
+    const response = NextResponse.redirect(new URL("/login", request.url));
+    response.cookies.delete("access_token");
+    response.cookies.delete("refresh_token");
+    return response;
+  }
 
-        const res = await fetch('http://localhost:9000/api/health-check', {
-            headers: {
-                'Authorization': `Bearer ${accessToken}`,
-            },
-        });
-        if (!res.ok) {
-            const response = NextResponse.redirect(new URL('/login', request.url));
-            response.cookies.delete('access_token');
-            response.cookies.delete('refresh_token');
-            return response;
-        }
-    } catch (err) {
-        const response = NextResponse.redirect(new URL('/login', request.url));
-        response.cookies.delete('access_token');
-        response.cookies.delete('refresh_token');
-        return response;
-    }
+  if (accessToken && publicPaths.includes(url.pathname)) {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
 
-    return NextResponse.next();
+  return NextResponse.next();
 }
-
 
 export const config = {
-    matcher: ['/dashboard/:path*']
-}
+  matcher: ["/", "/dashboard/:path*", "/login", "/register"],
+};

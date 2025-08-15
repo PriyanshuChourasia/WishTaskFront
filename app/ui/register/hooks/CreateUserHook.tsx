@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query"
 import { registerUser } from "../services/api";
 import { IRegisterInterface } from "../interface/RegisterInterface";
 import toast from "react-hot-toast";
-import { useRouter } from "next/compat/router";
+import { useRouter } from "next/navigation";
 
 
 
@@ -21,12 +21,18 @@ export const CreateRegisterHook = () =>{
         },
         retry:false,
         onSuccess:(data)=>{
-            if(data.data.success){
+            if(Number(data.status) == 201){
                 toast.success("User resgistered successfully",{
                     position:"top-center",
                     removeDelay:1000
                 });
-                router?.replace("/login");
+                router.replace("/login");
+            }else if(Number(data.status) == 302){
+                toast.error(data.data.errors.message,{
+                    position:"top-center",
+                    removeDelay:1000
+                });
+                router.push("/login");
             }
         },
         onError:(error)=>{

@@ -1,10 +1,8 @@
 "use client";
-
 import { ErrorMessage, Field, Form, Formik } from "formik"
 import { RegisterValidationHook } from "../hooks/RegisterValidation";
 import { Button } from "@/components/ui/button";
 import { CreateRegisterHook } from "../hooks/CreateUserHook";
-import { useRouter } from "next/compat/router";
 import Link from "next/link";
 
 
@@ -14,12 +12,11 @@ import Link from "next/link";
 export const RegisterForm = () =>{
 
     const {mutate,isPending} = CreateRegisterHook();
-    const router = useRouter();
+
 
     return(
         <Formik 
             onSubmit={(values,action)=>{
-                console.log("Values",values);
                 setTimeout(() => {
                     mutate(values);
                     action.setSubmitting(false);
@@ -67,7 +64,7 @@ export const RegisterForm = () =>{
                     </div>
 
                     <div className="w-full mb-8">
-                        <Button className="w-full h-12">
+                        <Button type="submit" className="w-full h-12 cursor-pointer">
                             {isPending ? "Registering....." : "Register"}
                         </Button>
                     </div>

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { ICreateAcitivityInterface } from "../interfaces/CreateActivityInterface"
-import { createActivity, getActivitiesById } from "../services/api"
+import { createActivity } from "../services/api"
 import toast from "react-hot-toast";
 
 
@@ -20,8 +20,7 @@ export const CreateActivityHook = () => {
             queryClient.invalidateQueries({queryKey:['get-activity-by-id']});
             toast.success("Activity created successfully");
         },
-        onError:(error)=>{
-            console.log("Error",error);
+        onError:()=>{
         }
     });
 }

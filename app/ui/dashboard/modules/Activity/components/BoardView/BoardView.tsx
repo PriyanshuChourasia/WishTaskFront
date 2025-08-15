@@ -50,7 +50,6 @@ export const BoardView: React.FC<BoardViewProps> = ({data,isLoading}) => {
     }
   });
 
-  console.log(ActivityStatusColor['DRAFT'],"Grouped activity");
 
   return (
     <div className="py-2">

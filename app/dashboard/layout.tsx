@@ -20,10 +20,7 @@ export default function Layout({children}:{children:React.ReactNode}){
         if(isSuccess && data.data.success){
             dispatch(setUserDetails(data.data));
         }
-        else if(isError){
-            console.log("Error",isError);
-        }
-    },[isSuccess,data,isError]),
+    },[isSuccess,data,isError,dispatch]);
 
     useEffect(()=>{
         if(isDarkMode){
@@ -37,7 +34,7 @@ export default function Layout({children}:{children:React.ReactNode}){
         if(isAllUserSuccess){
             dispatch(setAllUserDetails(allUser.data));
         }
-    },[allUser,isAllUserSuccess]);
+    },[allUser,isAllUserSuccess,dispatch]);
 
 
     return (

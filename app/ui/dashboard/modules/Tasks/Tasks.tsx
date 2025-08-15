@@ -20,7 +20,7 @@ export default function Tasks(){
         }else if(!isSuccess && !data?.data.success){
             setTaskData(TaskResponseInitialstate);
         }
-    },[isSuccess,data]);
+    },[isSuccess,data,dispatch]);
 
     return(
         <div className="px-4 py-4">

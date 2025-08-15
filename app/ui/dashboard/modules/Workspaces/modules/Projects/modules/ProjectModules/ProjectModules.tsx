@@ -2,8 +2,7 @@
 
 
 
-
-export const ProjectInformation = () => {
+export const ProjectModules = () =>{
     return(
         <div>
         </div>

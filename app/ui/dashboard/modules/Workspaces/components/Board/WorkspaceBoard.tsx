@@ -1,5 +1,4 @@
 import { FolderKanban } from "lucide-react";
-import { IWorkSpaceInterface } from "../../interfaces/CreateWorkspaceInterface"
 import { BoardCard } from "./components/BoardCard";
 import { useAppSelector } from "@/app/ui/redux";
 

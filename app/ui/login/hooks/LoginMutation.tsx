@@ -1,3 +1,4 @@
+"use client";
 import { useMutation } from "@tanstack/react-query"
 import { loginQueryKey } from "../services/queryKey"
 import { ILoginRequest } from "../interfaces/LoginRequest"
@@ -19,30 +20,28 @@ export const LoginMutation = () =>{
             return loginUser(loginRequest);
         },
         retry:false,
-        onSuccess:(data)=>{
+        onSuccess: async (data)=>{
             const accessToken = data.data.data.access_token;
             if(accessToken){
-                console.log("next router push");
                 
                 toast.success("Login Successfull",{
                     removeDelay: 2000,
                     position:"top-center"
                 });
                 Cookies.set("access_token",accessToken,{
-                    sameSite: "None",
-                    secure: true,
+                    sameSite: "Lax",
                     expires: 7
                 });
                 Cookies.set("refresh_token",data.data.data.refresh_token,{
-                    sameSite:"None",
+                    sameSite:"Lax",
                     secure: true,
                     expires: 7,
                 });
-                router.push("/dashboard");
+                await new Promise((resolve) => setTimeout(resolve, 50));
+                router.replace("/dashboard");
             }
         },
         onError:(error)=>{
-            console.log("Error: ",error.message);
             if(error){
                 toast.error(error.message,{
 

@@ -1,54 +1,23 @@
-import { Info } from "lucide-react"
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { Search } from "lucide-react"
+import { CreateProject } from "../../Projects/components/CreateProject/CreateProject"
 
 
-interface WorkspaceHeader{
-    data:{
-        id:string,
-        name:string,
-        noOfProjects: number,
-        viewMode: string,
-        shared: boolean,
-        createdBy:string,
-        createdAt:string
-    },
-    isLoading:boolean
-}
+
+export const WorkspaceHeader = () =>{
 
 
-export const WorkspaceHeader: React.FC<WorkspaceHeader> = ({data,isLoading}) =>{
-
-    const pathName = usePathname();
-    
-    const pathId = pathName.split('/');
-    const id = pathId[pathId.length - 1];
 
     return(
-        <div className="w-full flex xs:flex-row flex-wrap gap-4 items-center justify-between px-4 py-2 rounded-md border-2 border-gray-200 hover:border-gray-600 transition-all duration-200 ease-in shadow-sm hover:shadow-xl ">
-            <div className="flex flex-col items-center">
-                <h1 className="font-semibold">Workspace</h1>
-                <p>{data.name}</p>
+        <div className="py-3 px-2 shadow-lg my-4 mt-6 rounded-lg w-full grid grid-cols-2">
+            <div>
+                <div className="border-[1px] flex px-2 rounded-md items-center border-gray-700 focus-within:border-gray-900">
+                    <Search size={18}/>
+                    <input type="search" className="outline-none pl-2 w-full border-none py-2" placeholder="Search project...." />
+                </div>
             </div>
-            <div className="md:flex hidden flex-col items-center">
-                <h1 className="font-semibold">View Mode</h1>
-                <p className={`${data.viewMode == "PUBLIC" ? "text-green-600" : "text-red-600"}`} >{data.viewMode}</p>
+            <div className="flex items-center justify-end">
+                <CreateProject/>
             </div>
-            {/* <div className="flex flex-col items-center">
-                <h1 className="font-semibold">Shared</h1>
-                <p>{data.shared ? "TRUE" : "FALSE"}</p>
-            </div> */}
-            <div className="md:flex hidden flex-col items-center">
-                <h1 className="font-semibold">No Of Projects</h1>
-                <p>{data.noOfProjects}</p>
-            </div>
-            <div className="md:flex hidden flex-col items-center">
-                <h1 className="font-semibold">Created At</h1>
-                <p>{new Date(data.createdAt).toLocaleDateString([],{day:'2-digit',month:'short',year:'2-digit',hour12:false,hour:'2-digit',minute:'2-digit'})}</p>
-            </div>
-            <Link href={`/dashboard/workspaces/${id}/info`}>
-                <Info size={24} className="cursor-pointer" />
-            </Link>
         </div>
     )
 }

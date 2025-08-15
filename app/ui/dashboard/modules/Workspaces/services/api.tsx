@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { IWorkspaceDetailResponse, IWorkspaceResponseInterface } from "../interfaces/WorkspaceResponseInterface";
 import axiosApi from "@/app/lib/AxiosConfig";
-import { ICreateWorkspaceInterface, ICreateWorkspaceResponse, IWorkSpaceInterface } from "../interfaces/CreateWorkspaceInterface";
+import { ICreateWorkspaceInterface, ICreateWorkspaceResponse } from "../interfaces/CreateWorkspaceInterface";
 import { IUpdateWorkspace, IUpdateWorkspaceResponse } from "../interfaces/UpdateWorkspaceInterface";
 
 

@@ -13,10 +13,10 @@ export const CreateWorkdspaceMutation = () =>{
             return createWorkspace(request);
         },
         retry:false,
-        onSuccess:(data)=>{
+        onSuccess:()=>{
             queryClient.invalidateQueries({queryKey:['get-workspaces-by-id']})
         },
-        onError:(error)=>{
+        onError:()=>{
 
         }
     })

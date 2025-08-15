@@ -1,28 +1,25 @@
 "use client";
 import {Field, Form, Formik} from "formik";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {Eye,EyeOff} from "lucide-react";
 import { LoginMutation } from "../hooks/LoginMutation";
+import { useRouter } from "next/navigation";
 
 
 export default function LoginForm(){
-
+    const router = useRouter();
     const [showPassword,setShowPassword] = useState<boolean>(false);
-    const {mutate,isPending} = LoginMutation();
+    const {mutate,isPending,isSuccess} = LoginMutation();
 
 
     return(
         <div>
             <Formik
-                onSubmit={(values,action)=>{
-                    console.log("values: ",values);
+                onSubmit={(values,_action)=>{
                     mutate({
                         email: values.email,
                         password: values.password
                     });
-                    setTimeout(() => {
-                        action.setSubmitting(false);
-                    }, 600);
                 }}
                 initialValues={{
                     email:"",

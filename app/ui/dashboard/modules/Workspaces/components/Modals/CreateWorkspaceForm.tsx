@@ -19,12 +19,11 @@ export default function CreateWorkspaceForm({setOpen}:{setOpen:(open:boolean)=> 
         if(isSuccess){
             setOpen(false);
         }
-    },[isSuccess]);
+    },[isSuccess,setOpen]);
 
     return(
         <Formik
             onSubmit={(values,action)=>{
-                console.log(action,values);
                 mutate(values);
                 setTimeout(() => {
                     action.setSubmitting(false);
