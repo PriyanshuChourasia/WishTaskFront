@@ -1,0 +1,71 @@
+name: Publish WishTask & Deploy Docker Container
+# This workflow uses actions that are not certified by Github.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    branches: ["main"]
+    tags: ['1.0.0']
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: docker.io
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/wishtasknextjs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up docker buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Log in to docker hub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{env.REGISTRY}}
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest
+            type=raw,value=main
+            type=sha
+            type=semver,pattern={{version}},value=${{github.ref_name}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{steps.meta.outputs.tags}}
+          labels: ${{steps.meta.outputs.labels}}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy on VPS via SSH (Simple docker)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{secrets.SERVER_IP}}
+          username:
+          key:
+          port:
+          script: |
+            echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login ${{env.REGISTRY}} -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main || docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            docker stop nextjs_app || true
+            docker rm nextjs_app || true
+            docker run -d --name nextjs_app --restart always -p 3000:3000 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
