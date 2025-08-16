@@ -60,9 +60,9 @@ jobs:
         uses: appleboy/ssh-action@v1
         with:
           host: ${{secrets.SERVER_IP}}
-          username:
-          key:
-          port:
+          username: ${{secrets.SERVER_USER}}
+          key: ${{secrets.SERVER_PRIVATE_SSH_KEY}}
+          port: ${{secrets.SERVER_PORT}}
           script: |
             echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login ${{env.REGISTRY}} -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
             docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main || docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
