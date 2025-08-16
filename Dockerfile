@@ -16,6 +16,8 @@ RUN pnpm run build
 # Step 2 Production stage
 FROM node:alpine
 
+RUN corepack enable
+
 WORKDIR /app
 
 COPY --from=builder /src/package.json ./package.json
