@@ -65,7 +65,7 @@ jobs:
           port: 2244
           script: |
             echo "${{secrets.DOCKERHUB_TOKEN}}" | sudo docker login ${{env.REGISTRY}} -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-            sudo docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main || sudo docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            sudo docker stop nextjs_app || true
-            sudo docker rm nextjs_app || true
-            sudo docker run -d --name nextjs_app --restart always -p 3099:3000 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+            docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main || sudo docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            docker stop nextjs_app || true
+            docker rm nextjs_app || true
+            docker run -d --name nextjs_app --restart always -p 3099:3000 ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
